@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-
 #define SIZE 256
-
 
 typedef enum {
     ERR = -1,
@@ -13,7 +9,24 @@ const char alphabet[] = {"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz01
 
 int index_of_char[sizeof(alphabet)];
 
-int indexInit()
+
+int indexInit(void);
+int mod(int num);
+void clearBuf(void);
+char *encrypt(char *str, char *res, int key);
+
+
+#include <stdio.h>
+#include <string.h>
+
+
+
+#include "files.h"
+
+// END OF THE HEADER
+
+
+int indexInit(void)
 {
     int i;
     for(i = 0; i < sizeof(alphabet); ++i)
@@ -80,8 +93,7 @@ int main(void)
     encrypt(str, encr, key);
     encrypt(encr, decr, -key);
     
-    printf("\n\n%s\n", encr);
-    printf("%s\n", decr); 
+    printf("%s", encr);
 
     return SUCCESS;
 }
