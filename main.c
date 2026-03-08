@@ -12,7 +12,7 @@ typedef struct ACCOUNT_DATA{
     char pass[256];
 } ACCOUNT;
 
-const char alphabet[] = {"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789_-?!. ,:@#$%^&*()[]{}\'\"/\\|+=<>"};//You can add here any symbol, except of '\0' and/or '\n'. Also you can squence.
+const char alphabet[] = {"AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789_-?!. ,:@#$%^&*()[]{}\'\"/\\|+=<>"};//You can add here any symbol, except of '\0' and/or '\n'. Also you can change sequence.
 int index_of_char[sizeof(alphabet)];
 int startup_key;
 
@@ -73,10 +73,10 @@ char *encrypt(char *str, char *res, int key)
 
         if(cur == ERR)
             return "ERR";
-        else if( id > alphabet_size || id < 0 )
+        else if( id > alphabet_size || id <= 0 )
             id = (cur + key + alphabet_size) % alphabet_size;
         
-        if( id < alphabet_size && id > 0)
+        if( id < alphabet_size && id >= 0)
             res[i] = alphabet[id];
     }
     res[str_size] = '\0';
@@ -87,9 +87,10 @@ char *encrypt(char *str, char *res, int key)
 int main(void)
 {
     indexInit();
-    puts("Enter the key:");
+    printf("Enter the key: ");
     scanf("%d", &startup_key);
 
+    system("cls");
     menuCreate();
 
     return SUCCESS;

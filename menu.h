@@ -13,6 +13,7 @@ void menuEncrypt(void);
 void menuAddLine(void);
 void menuDeleteLine(void);
 void dataOutput(void);
+void checkData(void);
 int menuCreate(void);
 
 #endif
@@ -20,7 +21,7 @@ int menuCreate(void);
 MenuOpt menu_options[MENU_SIZE] = {
     {"Encrypt own text", menuEncrypt},
     {"Add data about single account to the file", menuAddLine},
-    {"Read your data from the file", dataOutput},
+    {"Read your data from the file", checkData},
     {"Delete line", menuDeleteLine},
     {"\0", NULL}
 };
@@ -28,23 +29,25 @@ MenuOpt menu_options[MENU_SIZE] = {
 void menuEncrypt(void)
 {
     system("cls");
-    int key;
-    puts("Enter the key:");
-    scanf("%d", &key);
 
     char str[SIZE];
     char encr[SIZE];
+    char input_key[16];
+    int key;
 
     clearBuf();
 
-    printf("\nEnter the message to encrypt\n");
+    printf("Enter the key: ");
+    scanf("%d", &key);
+
+    printf("Enter the message to encrypt:\n");
     fgets(str, SIZE, stdin);
 
     encrypt(str, encr, key);
-    
-    printf("%s", encr);
-    
-    return;
+
+    system("cls");
+    printf("Result: %s\n\n", encr);
+    menuCreate();
 }
 
 void menuAddLine(void)
@@ -66,19 +69,26 @@ void menuAddLine(void)
 
     addAccount(encrypted.platform, encrypted.name, encrypted.pass);
 
-    return;
+    system("cls");
+    printf("Line:\n Platform: %s Username: %s Password: %s\n was successfully added\n\n", encrypted.platform, encrypted.name, encrypted.pass);
+    menuCreate();
 }
 
 void menuDeleteLine(void)
 {
     int del_line;
     dataOutput();
+
+    clearBuf();
+
     puts("\nEnter the number of the line you want to delete");
-    scanf("%d", del_line);
+    scanf("%d", &del_line);
 
     deleteLine(del_line);
 
-    return;
+    system("cls");
+    printf("\nLine number %d was successfully deleted\n\n", del_line);
+    menuCreate();
 }
 
 void dataOutput(void)
@@ -101,15 +111,20 @@ void dataOutput(void)
         ++i;
     }
 
-    return;
 }
 
+void checkData(void)
+{
+    dataOutput();
+
+    puts("\n\n");
+    menuCreate();
+}
 
 
 
 int menuCreate(void)
 {
-    system("cls");
     puts("Chose one option from exposed below:");
 
     int i = 0;

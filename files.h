@@ -59,7 +59,7 @@ char *readLine(FILE *file, char *buf)
 {
     int i = 0;
     char c = fgetc(file);
-    while(feof(c) && i < SIZE){
+    while(c != EOF && i < SIZE){
         if(c == '\n')
             break;
         buf[i] = c; 
