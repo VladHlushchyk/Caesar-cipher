@@ -19,7 +19,7 @@ int fileAppend(char *text)
 {
     FILE *file = fopen(FILE_NAME, "a");
 
-    fprintf(file, text);
+    fprintf(file, "%s", text);
 
     fclose(file);
     return 0;
