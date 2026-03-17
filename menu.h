@@ -102,8 +102,8 @@ void dataOutput(void)
     ACCOUNT data[MAX_ACCOUNTS_AMOUNT];
     if(fileRead(data) == ERR) {puts("dataOutput Error"); return;}
 
-    printf("%-5s  | %30s | %30s | %30s | %20s\n", "№", "PLATFORM", "USERNAME", "E-MAIL", "PASSWORD");
-    printf("-----+--------------------------------+--------------------------------+--------------------------------+---------------------\n");
+    printf("%-5s | %15s | %20s | %20s | %20s\n", "#", "PLATFORM", "USERNAME", "E-MAIL", "PASSWORD");
+    printf("-----+------------------+----------------------+----------------------+----------------------\n");
 
     int i = 0;
     while(data[i].platform[0] != '\0'){
@@ -112,7 +112,7 @@ void dataOutput(void)
         encrypt(data[i].mail, decrypted_data[i].mail, -startup_key);
         encrypt(data[i].pass, decrypted_data[i].pass, -startup_key);
 
-        printf("%-5d| %30s | %30s | %30s | %20s\n", i+1, decrypted_data[i].platform, decrypted_data[i].name, decrypted_data[i].mail, decrypted_data[i].pass);
+        printf("%-5d | %15s | %20s | %20s | %20s\n", i+1, decrypted_data[i].platform, decrypted_data[i].name, decrypted_data[i].mail, decrypted_data[i].pass);
         ++i;
     }
 
