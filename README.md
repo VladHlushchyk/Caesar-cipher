@@ -65,10 +65,13 @@ As it follows from the name, this function will delete one line (account) from t
 
 ![Delete line screen](./images/Delete%20line.png)
 
-After you enter the line number and press enter, you will see a screen that says that you successfully deleted line number x; I've chosen line number 2, so it says 2 instead of x. If you check your accounts data through "Read your data from the file", you will find out that this line disappeared.
+After you enter the line number and press enter, you will see a screen that says that you successfully deleted line number x; I've chosen line number 2, so it says 2 instead of x:
 
-If you misclicked and chose the "Delete line" option accidentally, you can enter number 0 (or any other number of a line that does not exist), and none of the lines will be deleted.
 ![Deleted line screen](./images/Deleted%20line.png)
+
+If you check your accounts data through "Read your data from the file", you will find out that this line disappeared.
+If you misclicked and chose the "Delete line" option accidentally, you can enter number 0 (or any other number of a line that does not exist), and none of the lines will be deleted.
+
 
 # How to create a custom alphabet?
 To create that alphabet, you want to copy my repository somewhere on your computer, open the file "main.c", and add all your wanted symbols to line 16, in the array "alphabet". The only unwanted symbols are '\n' and '\0'; everything else is good to add.
